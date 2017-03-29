@@ -1,0 +1,27 @@
+apply plugin: 'application'
+version '1.0.0'
+mainClassName='csrf'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+distZip.enabled = false
+
+jar {
+    archiveName = 'csrf.jar'
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        url 'http://www.viewtrade.com/maven'
+    }
+}
+
+dependencies {
+}
+
+startScripts {
+    doLast {
+        delete windowsScript
+        delete unixScript
+    }
+}
