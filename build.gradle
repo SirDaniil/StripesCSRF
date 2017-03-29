@@ -1,5 +1,4 @@
 apply plugin: 'java'
-apply plugin: 'war'
 version '1.0.0'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -16,8 +15,8 @@ repositories {
 }
 
 dependencies {
-    providedCompile group: 'org.apache.tomcat', name: 'tomcat-servlet-api', version: '7.0.70'
-    providedCompile group: 'org.apache.tomcat', name: 'tomcat-jasper-el', version: '7.0.70'
-    providedCompile group: 'org.apache.tomcat', name: 'tomcat-jsp-api', version: '7.0.70'
+	compile group: 'org.apache.tomcat', name: 'tomcat-servlet-api', version: '7.0.76'
+	compile group: 'org.apache.tomcat', name: 'tomcat-jasper-el', version: '7.0.76'
+	compile group: 'org.apache.tomcat', name: 'tomcat-jsp-api', version: '7.0.76'
     compile group: 'net.sourceforge.stripes', name: 'stripes', version: '1.6.0'
 }
