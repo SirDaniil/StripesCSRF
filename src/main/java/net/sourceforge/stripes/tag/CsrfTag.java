@@ -5,7 +5,7 @@ import java.util.concurrent.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 import javax.servlet.jsp.tagext.*;
-import com.orbis.*;
+import com.github.sirdaniil.stripes.*;
 import net.sourceforge.stripes.action.*;
 
 /**

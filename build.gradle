@@ -1,9 +1,8 @@
-apply plugin: 'application'
+apply plugin: 'java'
+apply plugin: 'war'
 version '1.0.0'
-mainClassName='csrf'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
-distZip.enabled = false
 
 jar {
     archiveName = 'csrf.jar'
@@ -17,11 +16,8 @@ repositories {
 }
 
 dependencies {
-}
-
-startScripts {
-    doLast {
-        delete windowsScript
-        delete unixScript
-    }
+    providedCompile group: 'org.apache.tomcat', name: 'tomcat-servlet-api', version: '7.0.70'
+    providedCompile group: 'org.apache.tomcat', name: 'tomcat-jasper-el', version: '7.0.70'
+    providedCompile group: 'org.apache.tomcat', name: 'tomcat-jsp-api', version: '7.0.70'
+    compile group: 'net.sourceforge.stripes', name: 'stripes', version: '1.6.0'
 }
