@@ -8,8 +8,7 @@ repositories {
 }
 
 dependencies {
-	compile group: 'org.apache.tomcat', name: 'tomcat-servlet-api', version: '7.0.76'
-	compile group: 'org.apache.tomcat', name: 'tomcat-jasper-el', version: '7.0.76'
-	compile group: 'org.apache.tomcat', name: 'tomcat-jsp-api', version: '7.0.76'
+    compile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.1.0'
+    compile group: 'javax.servlet.jsp', name: 'javax.servlet.jsp-api', version: '2.3.1'
     compile group: 'net.sourceforge.stripes', name: 'stripes', version: '1.6.0'
 }
