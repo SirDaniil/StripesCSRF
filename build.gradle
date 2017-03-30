@@ -3,15 +3,8 @@ version '1.0.0'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-jar {
-    archiveName = 'csrf.jar'
-}
-
 repositories {
     mavenCentral()
-    maven {
-        url 'http://www.viewtrade.com/maven'
-    }
 }
 
 dependencies {
