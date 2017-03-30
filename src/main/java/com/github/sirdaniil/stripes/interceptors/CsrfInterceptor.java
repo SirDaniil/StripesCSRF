@@ -7,6 +7,7 @@ import javax.servlet.http.*;
 import com.github.sirdaniil.stripes.*;
 import net.sourceforge.stripes.action.*;
 import net.sourceforge.stripes.controller.*;
+import net.sourceforge.stripes.tag.*;
 
 /**
  * Created by Daniil Sosonkin
@@ -20,17 +21,19 @@ public class CsrfInterceptor implements Interceptor
             {
                 ActionBean actionBean = context.getActionBean();
                 Method method = context.getHandler();
+                HttpServletRequest request = actionBean.getContext().getRequest();
+                HttpSession session = request.getSession(false);
+                Object csrf = request.getAttribute(CsrfTag.FIELD_NAME);
 
                 if (method.isAnnotationPresent(CsrfSecure.class))
                     {
-                        if (!"POST".equals(context.getActionBeanContext().getRequest().getMethod()))
+                        if (!"POST".equals(request.getMethod()))
                             throw new IOException("Only POST are supported!");
 
-                        if (!(actionBean instanceof CsrfProtected))
-                            throw new IOException("Action bean [" + actionBean.getClass() + "] is not protected.");
+                        if (session == null || csrf == null)
+                            throw new IOException("Invalid CSRF.");
 
-                        CsrfProtected csrf = (CsrfProtected) actionBean;
-                        HttpSession session = context.getActionBean().getContext().getRequest().getSession();
+                        String csrfToken = csrf.toString();
                         String name = Util.sha256(actionBean.getClass().getName());
                         Object obj = session.getAttribute(name);
 
@@ -39,7 +42,7 @@ public class CsrfInterceptor implements Interceptor
 
                         @SuppressWarnings("unchecked")
                         Map<String, Long> map = (Map<String, Long>) obj;
-                        Long ts = map.remove(csrf.getCsrfToken());
+                        Long ts = map.remove(csrfToken);
 
                         if (ts == null)
                             throw new IOException("Invalid CSRF.");

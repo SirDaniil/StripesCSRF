@@ -14,6 +14,8 @@ import net.sourceforge.stripes.action.*;
  */
 public class CsrfTag extends InputTagSupport implements BodyTag
     {
+        public static final String FIELD_NAME = "csrfToken";
+
         public CsrfTag()
             {
                 getAttributes().put("type", "hidden");
@@ -83,7 +85,7 @@ public class CsrfTag extends InputTagSupport implements BodyTag
 
                 // Write it
                 getAttributes().put("value", csrf);
-                getAttributes().put("name", "csrfToken");
+                getAttributes().put("name", FIELD_NAME);
                 writeSingletonTag(context.getOut(), "input");
 
                 // Clear out the value from the attributes
